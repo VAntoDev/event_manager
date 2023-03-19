@@ -1,15 +1,7 @@
 require 'csv'
 
 def clean_zipcode(zipcode)
-  if zipcode.nil?
-    zipcode = '00000'
-  elsif zipcode.length < 5
-    zipcode = zipcode.rjust(5, '0')
-  elsif zipcode.length > 5
-    zipcode = zipcode[0..4]
-  else
-    zipcode
-  end
+  zipcode.to_s.rjust(5, '0')[0..4]  #to_s makes the nil become "", rjust adjusts strings smaller than 5 with '0', slice makes longer strings only 5 digits
 end
 
 contents = CSV.open(
